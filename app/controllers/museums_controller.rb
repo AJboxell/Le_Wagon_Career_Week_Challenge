@@ -1,7 +1,7 @@
 class MuseumsController < ApplicationController
 
   def show
-    @museums = Museum.all
+    @postcodes = Museum.all.group_by { |museum| museum.postcode }
   end
 
   def search
@@ -12,7 +12,7 @@ class MuseumsController < ApplicationController
     user_serialized = URI.open(url).read
     @museums = JSON.parse(user_serialized)
     @museums["features"].each do |item|
-      museum = Museum.new(name: item["place_name"])
+      museum = Museum.new(name: item["place_name"], postcode: item["context"][0]["text"])
       museum.save!
     end
     redirect_to museums_path
