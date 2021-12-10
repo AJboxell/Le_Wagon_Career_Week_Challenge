@@ -1,2 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <h1>Search for museums near you</h1>
+  <p>Enter latitude and longitude below:</p>
+
+<% @list = List.new %>
+<%= simple_form_for @list do |f| %>
+  <%= f.input :lat %>
+  <%= f.input :lon %>
+  <%= f.button :submit %>
+<% end %>
