@@ -2,8 +2,7 @@
   <h1>Search for museums near you</h1>
   <p>Enter latitude and longitude below:</p>
 
-<% @list = List.new %>
-<%= simple_form_for @list do |f| %>
+<%= simple_form_for 'museums_search_path', method: :post do |f| %>
   <%= f.input :lat %>
   <%= f.input :lon %>
   <%= f.button :submit %>
